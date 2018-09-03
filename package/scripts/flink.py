@@ -32,12 +32,12 @@ class Master(Script):
             Execute('echo Installing packages')
 
             # Fetch and unzip snapshot build, if no cached flink tar package exists on Ambari server node
-            if not os.path.exists(params.temp_file):
+            if  os.path.exists(params.temp_file):
                 # Execute('wget '+params.flink_download_url+' -O '+params.temp_file+' -a '  + params.flink_log_file, user=params.flink_user)
-            Execute(
-                'tar -zxvf ' + params.temp_file + ' -C ' + params.flink_install_dir + ' >> ' + params.flink_log_file,
-                user=params.flink_user)
-            Execute('mv ' + params.flink_install_dir + '/*/* ' + params.flink_install_dir, user=params.flink_user)
+                Execute(
+                    'tar -zxvf ' + params.temp_file + ' -C ' + params.flink_install_dir + ' >> ' + params.flink_log_file,
+                    user=params.flink_user)
+                Execute('mv ' + params.flink_install_dir + '/*/* ' + params.flink_install_dir, user=params.flink_user)
 
             # update the configs specified by user
             self.configure(env, True)
@@ -96,7 +96,7 @@ class Master(Script):
         Execute('echo bin dir ' + params.bin_dir)
         Execute('echo pid file ' + status_params.flink_pid_file)
         cmd = format(
-            "export HADOOP_CONF_DIR={hadoop_conf_dir}; {bin_dir}/yarn-session.sh -n {flink_numcontainers} -s {flink_numberoftaskslots} -jm {flink_jobmanager_memory} -tm {flink_container_memory} -qu {flink_queue} -nm {flink_appname} -d")
+            "export HADOOP_CONF_DIR={hadoop_conf_dir}; export  HADOOP_CLASSPATH=`hadoop classpath` ; {bin_dir}/yarn-session.sh -n {flink_numcontainers} -s {flink_numberoftaskslots} -jm {flink_jobmanager_memory} -tm {flink_container_memory} -qu {flink_queue} -nm {flink_appname} -d")
         if params.flink_streaming:
             cmd = cmd + ' -st '
         Execute(cmd + format(" >> {flink_log_file}"), user=params.flink_user)
