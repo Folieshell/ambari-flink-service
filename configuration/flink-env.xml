@@ -17,14 +17,14 @@
 
   <property>
     <name>flink_user</name>
-    <value>flink</value>
+    <value>FLINK</value>
     <property-type>USER</property-type>
     <description>User flink daemon runs as</description>
   </property> 
         
   <property>
     <name>flink_group</name>
-    <value>flink</value>
+    <value>FLINK</value>
     <property-type>GROUP</property-type>
     <description>flink group</description>
   </property> 
@@ -113,7 +113,7 @@ state.backend: jobmanager
 # via keys 'fs.hdfs.hdfsdefault' and 'fs.hdfs.hdfssite'.
 #
 # fs.hdfs.hadoopconf: /path/to/hadoop/conf/
-env.java.home: /usr/jdk64/jdk1.8.0_77/jre
+env.java.home: /opt/jdk1.8.0_111/jre/
 taskmanager.memory.fraction: 0.6
 env.java.opts: -XX:+UseG1GC
   </value>
