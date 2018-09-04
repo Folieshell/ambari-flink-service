@@ -17,14 +17,14 @@
 
   <property>
     <name>flink_user</name>
-    <value>FLINK</value>
+    <value>flink</value>
     <property-type>USER</property-type>
     <description>User flink daemon runs as</description>
   </property> 
         
   <property>
     <name>flink_group</name>
-    <value>FLINK</value>
+    <value>flink</value>
     <property-type>GROUP</property-type>
     <description>flink group</description>
   </property> 
